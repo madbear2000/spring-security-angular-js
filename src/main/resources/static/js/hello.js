@@ -1,6 +1,10 @@
 angular.module('hello', [])
-  .controller('home', function($scope) {
+  .controller('home', function($http) {
 	  
-	  ctrl = this;
-	  ctrl.greeting = {id: 'xxx', content: 'Hello World!'}
-})
+	  var ctrl = this;
+	  
+	  $http.get('/greeting')
+	  	.then(function(response) {
+		  ctrl.greeting = response.data;
+	  })
+});
